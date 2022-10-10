@@ -1,25 +1,25 @@
 import styled from "styled-components";
-import { useLocation,useNavigate } from "react-router-dom";
-
-
+import { useLocation, useNavigate } from "react-router-dom";
 
 export default function SuccessScreen() {
   const { state } = useLocation();
+  const { seats, titleMovie, day, time, buyersName, buyersCPF } = state;
   const navigate = useNavigate();
 
-  const { seats, titleMovie, day, time,buyersName,buyersCPF } = state;
-
   function formatCPF(buyersCPF) {
-    const targetElement = buyersCPF
-    const newCPF = targetElement.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, "$1.$2.$3-$4")  
+    const targetElement = buyersCPF;
+    const newCPF = targetElement.replace(
+      /(\d{3})(\d{3})(\d{3})(\d{2})/,
+      "$1.$2.$3-$4"
+    );
     return newCPF;
-    }  
+  }
 
-    function handleClick(){
-        navigate("/");
-        window.location.reload()
-    }
-     
+  function handleClick() {
+    navigate("/");
+    window.location.reload();
+  }
+
   return (
     <Main>
       <Title>
@@ -29,24 +29,29 @@ export default function SuccessScreen() {
         <Info>
           <h1>Filme e sessão</h1>
           {titleMovie}{" "}
-          <div>
+          <div data-identifier="movie-session-infos-reserve-finished">
             {day} {time}
           </div>
         </Info>
         <Info>
           <h1>Ingressos</h1>
-          <div>{seats.map((s,i) => <p key={i}>Assento {s}</p>)}</div>
+          <div data-identifier="seat-infos-reserve-finished">
+            {seats.map((s, i) => (
+              <p key={i}>Assento {s}</p>
+            ))}
+          </div>
         </Info>
         <Info>
-            <h1>Comprador</h1>
-            <div>
-                <p>Nome: {buyersName}</p>
-                <p>CPF: {formatCPF(buyersCPF)}</p>
-            </div>
+          <h1>Comprador</h1>
+          <div data-identifier="buyer-infos-reserve-finished">
+            <p>Nome: {buyersName}</p>
+            <p>CPF: {formatCPF(buyersCPF)}</p>
+          </div>
         </Info>
       </InfosContainer>
-      <button onClick={handleClick}>Voltar para Home</button>
-
+      <button onClick={handleClick} data-identifier="back-to-home-btn">
+        Voltar para Home
+      </button>
     </Main>
   );
 }
@@ -57,7 +62,7 @@ const Main = styled.main`
   display: flex;
   flex-direction: column;
   align-items: center;
-    button{
+  button {
     background-color: #e8833a;
     width: 225px;
     height: 42px;
@@ -90,7 +95,6 @@ const InfosContainer = styled.div`
   flex-direction: column;
   align-items: flex-start;
   width: 100%;
- 
 `;
 
 const Info = styled.div`

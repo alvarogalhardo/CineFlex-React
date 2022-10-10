@@ -1,24 +1,24 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Title from "./components/Title";
+import ScrollToTop from "./components/ScrollToTop";
 import GlobalStyles from "./components/GlobalStyles";
-import Home from "./components/Home";
-import Session from "./components/Session";
-import Seats from "./components/Seats";
-import SuccessScreen from "./components/SuccessSeats"
+import Title from "./components/Title";
+import HomeScreen from "./components/HomeScreen";
+import SessionScreen from "./components/SessionScreen";
+import SeatsScreen from "./components/SeatsScreen";
+import SuccessScreen from "./components/SuccessScreen";
 
 export default function App() {
   return (
     <BrowserRouter>
+      <ScrollToTop />
       <GlobalStyles />
       <Title />
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/sessoes/:idFilme" element={<Session />}/>
-        <Route path="/assentos/:idSessao" element={<Seats />}/>
-        <Route path="/sucesso" element={<SuccessScreen />}/>
+        <Route path="/" element={<HomeScreen />} />
+        <Route path="/sessoes/:idFilme" element={<SessionScreen />} />
+        <Route path="/assentos/:idSessao" element={<SeatsScreen />} />
+        <Route path="/sucesso" element={<SuccessScreen />} />
       </Routes>
     </BrowserRouter>
   );
 }
-
-

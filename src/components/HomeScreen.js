@@ -1,6 +1,6 @@
+import { useState, useEffect } from "react";
 import styled from "styled-components";
 import axios from "axios";
-import { useState, useEffect } from "react";
 import Movie from "./Movie";
 
 export default function Home() {
@@ -10,7 +10,9 @@ export default function Home() {
       "https://mock-api.driven.com.br/api/v8/cineflex/movies"
     );
     promisse.then((res) => setMovies(res.data));
-    promisse.catch((err) => console.log(err));
+    promisse.catch((err) =>
+      alert("Algo errado aconteceu, tente novamente mais tarde")
+    );
   }, []);
   return (
     <Main>
@@ -18,8 +20,8 @@ export default function Home() {
         <h1>Selecione o filme</h1>
       </Title>
       <Content>
-        {movies.map((movie, i) => (
-          <Movie key={i} movie={movie} />
+        {movies.map((movie) => (
+          <Movie key={movie.id} movie={movie} />
         ))}
       </Content>
     </Main>
@@ -49,6 +51,7 @@ const Title = styled.div`
 const Content = styled.div`
   display: flex;
   flex-direction: row;
+  justify-content: center;
   flex-wrap: wrap;
   margin-left: 20px;
   overflow-y: scroll;

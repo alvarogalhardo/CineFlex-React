@@ -64,4 +64,5 @@ const Container = styled.div`
   font-weight: 400;
   margin-bottom: 18px;
   margin-right: 8px;
+  cursor: pointer;
 `;

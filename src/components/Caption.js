@@ -1,6 +1,11 @@
 import styled from "styled-components";
 
-export default function Caption({ background, border, caption,dataIdentifier }) {
+export default function Caption({
+  background,
+  border,
+  caption,
+  dataIdentifier,
+}) {
   return (
     <Container data-identifier={dataIdentifier}>
       <Content background={background} border={border} />
@@ -19,6 +24,7 @@ const Content = styled.div`
 `;
 
 const Container = styled.div`
-display:flex;
-flex-direction:column;
-align-items: center`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;

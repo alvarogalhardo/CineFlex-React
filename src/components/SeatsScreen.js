@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { useParams, useNavigate,useLocation } from "react-router-dom";
+import { useParams, useNavigate, useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import Seat from "./Seat";
@@ -8,14 +8,14 @@ import Caption from "./Caption";
 export default function Seats() {
   const { idSessao } = useParams();
   const navigate = useNavigate();
-  const {state} = useLocation();
+  const { state } = useLocation();
   const [seats, setSeats] = useState([]);
   const [imagePoster, setImage] = useState("");
   const [titleMovie, setTitle] = useState("");
   const [day, setDay] = useState("");
   const [time, setTime] = useState("");
   const [selectedSeats, setSelectedSeats] = useState([]);
-  const [selectedSeatsId, setSelectedSeatsId] = useState([])
+  const [selectedSeatsId, setSelectedSeatsId] = useState([]);
   const [buyersName, setBuyersName] = useState("");
   const [buyersCPF, setBuyersCPF] = useState("");
 
@@ -72,10 +72,11 @@ export default function Seats() {
       name: buyersName,
       cpf: buyersCPF,
     };
-    console.log(postObject)
+
     const promisse = axios.post(postURL, postObject);
+
     promisse.then((res) => {
-      console.log(res)
+      console.log(res);
       if (res.status === 200) {
         navigate("/sucesso", {
           state: {
@@ -89,7 +90,7 @@ export default function Seats() {
         });
       }
     });
-    promisse.catch((err) =>
+    promisse.catch(() =>
       alert("Algo errado aconteceu, tente novamente mais tarde")
     );
   }
@@ -105,8 +106,8 @@ export default function Seats() {
             <Seat
               key={s.id}
               seat={s}
-              setSelectedSeats={setSelectedSeats}
               selectedSeatsArray={selectedSeats}
+              setSelectedSeats={setSelectedSeats}
               selectedSeatsId={selectedSeatsId}
               setSelectedSeatsId={setSelectedSeatsId}
             />
@@ -243,7 +244,7 @@ const FromContainer = styled.form`
     padding-right: 24px;
     padding-top: 3px;
     margin-bottom: 10px;
-
+    width: 375px;
     input {
       margin-top: 4px;
       height: 45px;

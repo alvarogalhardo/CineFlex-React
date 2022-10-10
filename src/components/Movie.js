@@ -5,7 +5,7 @@ export default function Movie({ movie }) {
   const { id, title, posterURL } = movie;
   return (
     <Link to={`/sessoes/${id}`}>
-      <Poster src={posterURL} alt={title} data-identifier="movie-outdoor"/>
+      <Poster src={posterURL} alt={title} data-identifier="movie-outdoor" />
     </Link>
   );
 }

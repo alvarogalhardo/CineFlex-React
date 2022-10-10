@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import Day from "./Day";
 
-export default function Session() {
+export default function Session({infos,setInfos}) {
   const { idFilme } = useParams();
   const [days, setDays] = useState([]);
   const [image, setImage] = useState("");
@@ -15,6 +15,7 @@ export default function Session() {
       `https://mock-api.driven.com.br/api/v8/cineflex/movies/${idFilme}/showtimes`
     );
     promisse.then((res) => {
+      console.log(res.data)
       setDays(res.data.days);
       setImage(res.data.posterURL);
       setTitle(res.data.title);
@@ -33,8 +34,8 @@ export default function Session() {
         ))}
       </Main>
       <Footer>
-        <img src={image} alt={title} />
-        <h1>{title}</h1>
+        <img src={image} alt={title} data-identifier="movie-img-preview"/>
+        <h1 data-identifier="movie-and-session-infos-preview">{title}</h1>
       </Footer>
     </>
   );
@@ -48,18 +49,18 @@ const Main = styled.main`
   align-items: flex-start;
 `;
 
-const Title = styled.div`
-  width: 100%;
-  height: 110px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: #293845;
-  h1 {
-    font-size: 24px;
-    font-weight: 400;
-  }
-`;
+  const Title = styled.div`
+    width: 100%;
+    height: 110px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #293845;
+    h1 {
+      font-size: 24px;
+      font-weight: 400;
+    }
+  `;
 
 const Footer = styled.footer`
   position: fixed;

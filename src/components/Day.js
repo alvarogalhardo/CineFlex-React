@@ -3,14 +3,14 @@ import { Link } from "react-router-dom";
 
 export default function Day({ day }) {
   return (
-    <Content>
-      <h1>
+    <Content >
+      <h1 data-identifier="session-date">
         {day.weekday} - {day.date}
       </h1>
       <Container>
         {day.showtimes.map((time) => (
-          <Link to={`/assentos/${time.id}`} key={time.id}>
-            <Time key={time.id}>{time.name}</Time>
+          <Link to={`/assentos/${time.id}`} key={time.id} state={day.date}>
+            <Time key={time.id} data-identifier="hour-minute-btn">{time.name}</Time>
           </Link>
         ))}
       </Container>

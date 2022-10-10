@@ -4,6 +4,7 @@ import GlobalStyles from "./components/GlobalStyles";
 import Home from "./components/Home";
 import Session from "./components/Session";
 import Seats from "./components/Seats";
+import SuccessScreen from "./components/SuccessSeats"
 
 export default function App() {
   return (
@@ -14,6 +15,7 @@ export default function App() {
         <Route path="/" element={<Home />} />
         <Route path="/sessoes/:idFilme" element={<Session />}/>
         <Route path="/assentos/:idSessao" element={<Seats />}/>
+        <Route path="/sucesso" element={<SuccessScreen />}/>
       </Routes>
     </BrowserRouter>
   );
